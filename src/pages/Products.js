@@ -39,19 +39,15 @@ class Products extends Component {
         ];
 
         return (
-            <ShopContext.Consumer>
-                {context => (
-                    <React.Fragment>
-                        <Header/>
-                        <Table
-                            style={{margin: 50}}
-                            columns={columns}
-                            dataSource={context.products}
-                            rowKey='id'
-                        />
-                    </React.Fragment>
-                )}
-            </ShopContext.Consumer>
+            <React.Fragment>
+                <Header/>
+                <Table
+                    style={{margin: 50}}
+                    columns={columns}
+                    dataSource={this.context.products}
+                    rowKey='id'
+                />
+            </React.Fragment>
         )
     }
 }
