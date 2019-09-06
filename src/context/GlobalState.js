@@ -1,48 +1,51 @@
-import React, { useState, useReducer } from "react";
+import React, { useReducer } from "react";
 import ShopContext from './shop-context';
+import { shopReducer, ADD_PRODUCT } from "./reducers";
 
 const GlobalState = props => {
-    // current state, a function that allows us to update state
-    const [products] = useState([
-        {
-            id: 1,
-            name: 'Just Dance',
-            price: '39.99'
-        },
-        {
-            id: 2,
-            name: 'Zelda',
-            price: '59.99'
-        },
-        {
-            id: 3,
-            name: 'Pokemon',
-            price: '49.99'
-        },
-        {
-            id: 4,
-            name: 'Mario',
-            price: '59.99'
-        },
-    ]);
-    const [cart, setCart] = useState([
 
-    ]);
+    const initialState = {
+        products: [
+            {
+                id: 1,
+                name: 'Just Dance',
+                price: '39.99'
+            },
+            {
+                id: 2,
+                name: 'Zelda',
+                price: '59.99'
+            },
+            {
+                id: 3,
+                name: 'Pokemon',
+                price: '49.99'
+            },
+            {
+                id: 4,
+                name: 'Mario',
+                price: '59.99'
+            },
+        ],
+        cart: []
+    };
+
+    const [state, dispatch] = useReducer(shopReducer, initialState);
 
     const addProductToCart = id => {
-        let updatedCart;
-        updatedCart = [...cart];
-        updatedCart.push(products.filter((item) => (item.id === id))[0]);
         setTimeout(() => {
-            setCart(updatedCart);
+            dispatch({
+                type: ADD_PRODUCT,
+                id: id
+            })
         }, 500);
     };
 
     return (
         <ShopContext.Provider
             value={{
-                products: products,
-                cart: cart,
+                products: state.products,
+                cart: state.cart,
                 addProductToCart: addProductToCart
             }}
         >
