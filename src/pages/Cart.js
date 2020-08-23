@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import Header from '../components/Header';
 import Table from 'antd/es/table';
-import ShopContext from "../context/shop-context";
+import { Context } from '../context/GlobalState';
 
-class Cart extends Component {
-    static contextType = ShopContext;
+const Cart = props => {
 
-    render() {
+    const AppContext = useContext(Context)
+
         const columns = [
             {
                 title: 'ID',
@@ -31,12 +31,11 @@ class Cart extends Component {
                 <Table
                     style={{margin: 50}}
                     columns={columns}
-                    dataSource={this.context.cart}
+                    dataSource={AppContext.state.cart}
                     rowKey='id'
                 />
             </React.Fragment>
         )
-    }
 }
 
 export default Cart
