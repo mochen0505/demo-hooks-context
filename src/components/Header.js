@@ -5,8 +5,8 @@ const Header = () => {
     return (
         <React.Fragment>
             <div style={{display: 'flex', justifyContent: 'center', marginTop: 50}}>
-                <div style={{marginRight: 50}}><NavLink to='/'>商品</NavLink></div>
-                <div><NavLink to='/cart'>购物车</NavLink></div>
+                <div style={{marginRight: 50}}><NavLink to='/'>Products</NavLink></div>
+                <div><NavLink to='/cart'>Cart</NavLink></div>
             </div>
         </React.Fragment>
     )
